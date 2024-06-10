@@ -30,11 +30,12 @@ char isbns[LIMITE_LIVROS][TAMANHO_ISBN];
 int total_livros = 0;
 
 void menuPrimario() {
-    printf("\n****************************************************\n");
-    printf("\n*             BIBLIOTECA ARQUIVOS JEDI             *\n");
-    printf("\n****************************************************\n");
-    printf("\nBem vindo à BIBLIOTECA ARQUIVOS JEDI!\n");
-    printf("Por favor, escolha uma das opções abaixo:\n");
+    printf("\n************************************************************************\n");
+    printf("\n*********************** BIBLIOTECA ARQUIVOS JEDI ***********************\n");
+    printf("\n************************************************************************\n");
+    printf("\nBem vindo aos ARQUIVOS JEDI, a maior biblioteca de toda a galáxia!\n");
+    printf("Aqui você terá acesso a uma vasta quantidade de livros pertencentes\nao Templo Jedi em Coruscant.\n");
+    printf("Para isso, basta escolher uma das opções abaixo:\n \n");
     printf("\n1 - Cadastrar livro\n");
     printf("2 - Listar livros\n");
     printf("3 - Buscar livro\n");
@@ -100,14 +101,14 @@ void buscarLivros() {
     char escolha;
 
     do {
-        int livro_localizado = 0;  // Mover a inicialização para dentro do loop
+        int livro_localizado = 0, i = 0; 
         setlocale(LC_ALL, "Portuguese");
 
         printf("\nDigite o título do livro que deseja encontrar: ");
         fgets(titulo_procurado, sizeof(titulo_procurado), stdin);
         titulo_procurado[strcspn(titulo_procurado, "\n")] = '\0';
-
-        for (int i = 0; i < total_livros; i++) {
+        
+        for ( i = 0; i < total_livros; i++) {
             if (strcmp(titulos[i], titulo_procurado) == 0) {
                 printf("\nO seguinte livro foi localizado: \n");
                 printf("\nTítulo: %s\n", titulos[i]);
@@ -142,6 +143,7 @@ void editarLivros() {
 
     char livro_editado[TAMANHO_TITULO];
     char escolha;
+    int i = 0;
 
     do {
         setlocale(LC_ALL, "Portuguese");
@@ -152,7 +154,7 @@ void editarLivros() {
 
         int indice = -1;
 
-        for (int i = 0; i < total_livros; i++) {
+        for (i = 0; i < total_livros; i++) {
             if (strcmp(titulos[i], livro_editado) == 0) {
                 indice = i;
                 break;
@@ -270,7 +272,7 @@ int main() {
                 case 2:
                     printf("\n-----------<<< Livros Cadastrados >>>----------- \n");
                     if (total_livros == 0) {
-                        printf("\nNão há livros cadastrados, Jedi!\n\n");
+                        printf("\nAté agora NÃO HÁ livro cadastrado, Jedi!\n\n");
                     } else {
                         listarLivros();
                     }
@@ -279,7 +281,7 @@ int main() {
                 case 3:
                     printf("\n--------<<< Buscar Livros Cadastrados >>>-------- \n");
                     if (total_livros == 0) {
-                        printf("\nNão há livros cadastrados, Jedi!\n\n");
+                        printf("\nNão é possível PROCURAR por livros, pois a biblioteca encontra-se vazia, Jedi!\n\n");
                     } else {
                         buscarLivros();
                     }
@@ -288,7 +290,7 @@ int main() {
                 case 4:
                     printf("\n--------<<< Editar Livros Cadastrados >>>-------- \n");
                     if (total_livros == 0) {
-                        printf("\nNão há livros cadastrados, Jedi!\n\n");
+                        printf("\nNão é possível EDITAR livros, pois AINDA NÃO HÁ livros cadastrados, Jedi!\n\n");
                     } else {
                         editarLivros();
                     }
@@ -297,7 +299,7 @@ int main() {
                 case 5:
                     printf("\n--------<<< Apagar Livros Cadastrados >>>-------- \n");
                     if (total_livros == 0) {
-                        printf("\nNão há livros cadastrados, Jedi!\n\n");
+                        printf("\nNão é possível APAGAR livros, pois AINDA NÃO HÁ livros cadastrados, Jedi!\n\n");
                     } else {
                         apagarLivros();
                     }
@@ -306,7 +308,8 @@ int main() {
                 }
         }
     } while (opcao != 0);
-
+    printf("\nObrigado por utilizar o nosso programa!\n\n");
+    printf("\nQualquer problema, por favor, entre em contato com a Bibliotecária Chefe Jocasta Nu.\n\n");
     printf("\nQue a força esteja com você!\n\n");
     system("pause");
 }
